@@ -15,12 +15,26 @@
       <li><a href="#">Blog</a></li>
     </div>
     <div class="main-content">
-
+      <div class="main-content-header">
+        <h2>Our API goes here</h2>
+      </div>
+      <div class="data-table">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Avatar</th>
+            </tr>
+          </thead>
+          <tbody id="data"></tbody>
+        </table>
+      </div>
     </div>
     <div class="footer">
-        <footer>
-            made with love by khashayar shomali.
-        </footer>
+      <footer>Made with love by khashayar shomali.</footer>
     </div>
   </body>
 </html>
@@ -29,7 +43,10 @@
 
   fetch(url).then((res) => {
     res.json().then((data) => {
-      console.log(data);
+      console.log(data.data);
     });
   });
+
+  
+
 </script>
