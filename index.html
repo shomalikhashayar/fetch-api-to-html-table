@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fecth API</title>
+    <title>Fetch API</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -29,7 +29,7 @@
               <th>Avatar</th>
             </tr>
           </thead>
-          <tbody id="data"></tbody>
+          <tbody id="table-body-data"></tbody>
         </table>
       </div>
     </div>
@@ -41,12 +41,33 @@
 <script>
   const url = "https://reqres.in/api/users?page=2";
 
-  fetch(url).then((res) => {
-    res.json().then((data) => {
+  fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
       console.log(data.data);
+      data.forEach((user) => {
+        const tableData = `
+
+        <tr>
+
+            <td>${user.id}</td>
+            <td>${user.first_name}</td>
+            <td>${user.last_name}</td>
+            <td>${user.email}</td>
+            <td><img src="${user.avatar}"/></td>
+            
+        </tr>
+        
+        `;
+
+        document
+          .querySelector("#table-body-data")
+          .insertAdjacentElement("beforeend", tableData);
+      });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  });
-
-  
-
 </script>
