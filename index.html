@@ -39,32 +39,56 @@
   </body>
 </html>
 <script>
-  const url = "https://reqres.in/api/users?page=2";
+  const url1 = "https://reqres.in/api/users?page=1";
+  const url2 = "https://reqres.in/api/users?page=2";
 
-  fetch(url)
+  fetch(url1)
     .then((res) => {
       return res.json();
     })
     .then((data) => {
       console.log(data.data);
-      data.forEach((user) => {
-        const tableData = `
-
-        <tr>
-
-            <td>${user.id}</td>
-            <td>${user.first_name}</td>
-            <td>${user.last_name}</td>
-            <td>${user.email}</td>
-            <td><img src="${user.avatar}"/></td>
-            
-        </tr>
-        
-        `;
-
-        document
-          .querySelector("#table-body-data")
-          .insertAdjacentElement("beforeend", tableData);
+      data.data.forEach((itemData) => {
+        const myTable = document.querySelector("#table-body-data");
+        myTable.insertAdjacentHTML(
+          "beforeend",
+          `
+                            <tr>
+                                <td>${itemData["id"]}</td>    
+                                <td>${itemData["first_name"]}</td>    
+                                <td>${itemData["last_name"]}</td>    
+                                <td>${itemData["email"]}</td>    
+                                <td><img src="${itemData["avatar"]}"</td>      
+    
+                            </tr>
+                        `
+        );
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  fetch(url2)
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data.data);
+      data.data.forEach((itemData) => {
+        const myTable = document.querySelector("#table-body-data");
+        myTable.insertAdjacentHTML(
+          "beforeend",
+          `
+                            <tr>
+                                <td>${itemData["id"]}</td>    
+                                <td>${itemData["first_name"]}</td>    
+                                <td>${itemData["last_name"]}</td>    
+                                <td>${itemData["email"]}</td>    
+                                <td><img src="${itemData["avatar"]}"</td>      
+    
+                            </tr>
+                        `
+        );
       });
     })
     .catch((err) => {
